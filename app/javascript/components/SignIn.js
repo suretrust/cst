@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import Axios from 'axios';
-import jwtDecode from 'jwt-decode';
+import { login } from './auth';
 
 const SignIn = ({ history }) => {
   const [state, setState] = useState({
@@ -9,6 +8,7 @@ const SignIn = ({ history }) => {
   });
 
   const [userType, setUserType] = useState('');
+  const [loginError, setLoginError] = useState('');
 
   const handleChange = e => {
     setState({
@@ -19,19 +19,12 @@ const SignIn = ({ history }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-
-    Axios.post('/tokens', state).then(res => {
-      localStorage.setItem('jwt', res.data.jwt);
-      const user = jwtDecode(res.data.jwt);
-      setUserType(user.type);
-      if (userType === 'Client') history.push('/dashboard');
-      if (userType === 'Agent') history.push('/agent-dashboard');
-      if (userType === 'Admin') history.push('/admin-dashboard');
-    });
+    login(state, userType, setUserType, setLoginError, history);
   };
 
   return (
     <form onSubmit={handleSubmit}>
+      <p>{loginError}</p>
       <div>
         <label htmlFor="email">Email</label>
         <input
