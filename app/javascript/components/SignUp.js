@@ -10,7 +10,6 @@ const SignUp = ({ history }) => {
 
   const [confirmPassword, setConfirmPassword] = useState('');
   const [pwdError, setPwdError] = useState('');
-  const [userType, setUserType] = useState('');
 
   const handleChange = e => {
     setState({
@@ -38,16 +37,21 @@ const SignUp = ({ history }) => {
       .then(res => {
         localStorage.setItem('jwt', res.data.jwt);
         const user = jwtDecode(res.data.jwt);
-        setUserType(user.type);
-        if (userType === 'Client') history.push('/dashboard');
-        if (userType === 'Agent') history.push('/agent-dashboard');
-        if (userType === 'Admin') history.push('/admin-dashboard');
+        const userType = user.type;
+        if (userType === 'Client') {
+          history.push('/dashboard');
+        } else if (userType === 'Agent') {
+          history.push('/agent-dashboard');
+        } else if (userType === 'Admin') {
+          history.push('/admin-dashboard');
+        }
       })
       .catch(err => console.log(err));
   };
 
   return (
     <form onSubmit={handleSubmit}>
+      <p>{signUpError}</p>
       <div>
         <label htmlFor="email">Email</label>
         <input

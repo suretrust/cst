@@ -7,7 +7,6 @@ const SignIn = ({ history }) => {
     password: '',
   });
 
-  const [userType, setUserType] = useState('');
   const [loginError, setLoginError] = useState('');
 
   const handleChange = e => {
@@ -19,7 +18,7 @@ const SignIn = ({ history }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    login(state, userType, setUserType, setLoginError, history);
+    login(state, setLoginError, history);
   };
 
   return (
