@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import Axios from 'axios';
+import jwtDecode from 'jwt-decode';
 
-const SignIn = () => {
+const SignIn = ({ history }) => {
   const [state, setState] = useState({
     email: '',
     password: '',
   });
+
+  const [type, setType] = useState('');
 
   const handleChange = e => {
     setState({
@@ -16,9 +19,12 @@ const SignIn = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
+
     Axios.post('/tokens', state).then(res => {
-      console.log(res.data.jwt);
       localStorage.setItem('jwt', res.data.jwt);
+      console.log(jwtDecode(res.data.jwt));
+      const user = jwtDecode(res.data.jwt);
+      if (user.email === 'admin@admin.com') history.push('/test');
     });
   };
 
@@ -46,7 +52,7 @@ const SignIn = () => {
           required
         />
       </div>
-      <button type="submit">Sign Up</button>
+      <button type="submit">Sign In</button>
     </form>
   );
 };
