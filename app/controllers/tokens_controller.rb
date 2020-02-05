@@ -5,7 +5,7 @@ class TokensController < ApplicationController
     user = User.find_by(email: params[:email])
     if user&.authenticate(params[:password])
       render json: {
-        jwt: encode_token(id: user.id, email: user.email)
+        jwt: encode_token(id: user.id, email: user.email, type: user.type)
       }
     else
       head :not_found

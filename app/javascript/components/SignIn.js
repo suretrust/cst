@@ -8,7 +8,7 @@ const SignIn = ({ history }) => {
     password: '',
   });
 
-  const [type, setType] = useState('');
+  const [userType, setUserType] = useState('');
 
   const handleChange = e => {
     setState({
@@ -22,9 +22,11 @@ const SignIn = ({ history }) => {
 
     Axios.post('/tokens', state).then(res => {
       localStorage.setItem('jwt', res.data.jwt);
-      console.log(jwtDecode(res.data.jwt));
       const user = jwtDecode(res.data.jwt);
-      if (user.email === 'admin@admin.com') history.push('/test');
+      setUserType(user.type);
+      if (userType === 'Client') history.push('/dashboard');
+      if (userType === 'Agent') history.push('/agent-dashboard');
+      if (userType === 'Admin') history.push('/admin-dashboard');
     });
   };
 
