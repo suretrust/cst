@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import Axios from 'axios';
-import jwtDecode from 'jwt-decode';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { signUp } from './auth';
 
 const SignUp = ({ history }) => {
   const [state, setState] = useState({
@@ -10,6 +10,7 @@ const SignUp = ({ history }) => {
 
   const [confirmPassword, setConfirmPassword] = useState('');
   const [pwdError, setPwdError] = useState('');
+  const [signUpError, setSignUpError] = useState('');
 
   const handleChange = e => {
     setState({
@@ -32,21 +33,7 @@ const SignUp = ({ history }) => {
     } else {
       setPwdError('');
     }
-
-    Axios.post('/users', state)
-      .then(res => {
-        localStorage.setItem('jwt', res.data.jwt);
-        const user = jwtDecode(res.data.jwt);
-        const userType = user.type;
-        if (userType === 'Client') {
-          history.push('/dashboard');
-        } else if (userType === 'Agent') {
-          history.push('/agent-dashboard');
-        } else if (userType === 'Admin') {
-          history.push('/admin-dashboard');
-        }
-      })
-      .catch(err => console.log(err));
+    signUp(state, setSignUpError, history);
   };
 
   return (
@@ -90,6 +77,9 @@ const SignUp = ({ history }) => {
         <small>{pwdError}</small>
       </div>
       <button type="submit">Sign Up</button>
+      <p>
+        Already have an account? <Link to="/sign-in">Sign In</Link>
+      </p>
     </form>
   );
 };

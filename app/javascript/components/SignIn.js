@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { login } from './auth';
 
 const SignIn = ({ history }) => {
@@ -47,6 +48,9 @@ const SignIn = ({ history }) => {
         />
       </div>
       <button type="submit">Sign In</button>
+      <p>
+        Don't have an account? <Link to="/sign-up">Sign Up</Link>
+      </p>
     </form>
   );
 };
