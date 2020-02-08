@@ -31,7 +31,7 @@ const CommentForm = ({ ticketId, setComments, comments }) => {
     <form onSubmit={handleSubmit}>
       <div>
         <label htmlFor="message">Message</label>
-        <input
+        <textarea
           type="message"
           name="message"
           value={formData.message}

@@ -26,9 +26,19 @@ class Api::V1::TicketsController < ApplicationController
     }
   end
 
-  def update; end
+  def update
+    return unless user.admin? || user.agent?
+
+    @ticket = Ticket.find(params[:id])
+    @ticket.update_attributes(status: false)
+    render json: @ticket
+  end
 
   private
+
+  def user
+    User.find(params[:user_id])
+  end
 
   def ticket_params
     params.permit(:title, :message, :status, :user_id, :user_email)

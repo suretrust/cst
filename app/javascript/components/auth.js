@@ -42,6 +42,9 @@ const signUp = (state, setSignUpError, history) => {
       }, 4000);
     });
 };
-const logOut = () => {};
+
+const logOut = () => {
+  localStorage.removeItem('jwt');
+};
 
 export { login, signUp, logOut, redirectAuth };

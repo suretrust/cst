@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import jwtDecode from 'jwt-decode';
 import Layout from './Layout';
+import { addTicket } from '../utilities/api';
 
-const TicketForm = () => {
+const TicketForm = ({ history }) => {
   const jwt = localStorage.getItem('jwt');
-  const userId = jwtDecode(jwt).id;
+  const userId = Number(jwtDecode(jwt).id);
   const userEmail = jwtDecode(jwt).email;
 
   const [formData, setFormData] = useState({
@@ -23,6 +24,8 @@ const TicketForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
+    addTicket(formData);
+    history.push('/dashboard');
   };
 
   return (
@@ -42,7 +45,7 @@ const TicketForm = () => {
         </div>
         <div>
           <label htmlFor="message">Message</label>
-          <input
+          <textarea
             type="message"
             name="message"
             value={formData.message}

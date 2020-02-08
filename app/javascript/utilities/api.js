@@ -26,7 +26,7 @@ const addComment = async (setComments, comments, data) => {
     });
 };
 
-const addTicket = async (setComments, comments, data) => {
+const addTicket = async data => {
   await Axios.post('/api/v1/tickets', {
     user_id: data.userId,
     user_email: data.userEmail,
@@ -34,7 +34,7 @@ const addTicket = async (setComments, comments, data) => {
     message: data.message,
   })
     .then(res => {
-      setComments([...comments, res.data]);
+      return res.data;
     })
     .catch(err => {
       return err;
@@ -51,6 +51,16 @@ const getTicket = async (setTicket, id) => {
     });
 };
 
+const closeTicket = async (id, userId) => {
+  await Axios.put(`/api/v1/tickets/${id}`, { user_id: userId })
+    .then(res => {
+      return res.data;
+    })
+    .catch(err => {
+      return err;
+    });
+};
+
 const getUser = async id => {
   const user = await Axios.get(`/api/v1/users/${id}`)
     .then(res => {
@@ -59,7 +69,6 @@ const getUser = async id => {
     .catch(err => {
       return err;
     });
-  console.log(user);
   return user;
 };
 
@@ -71,7 +80,6 @@ const getUserEmail = async (id, setUserEmailName) => {
     .catch(err => {
       return err;
     });
-  console.log(user);
   return user;
 };
 
@@ -93,4 +101,5 @@ export {
   getUserEmail,
   addComment,
   addTicket,
+  closeTicket,
 };
