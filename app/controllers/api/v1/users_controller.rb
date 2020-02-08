@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class UsersController < ApplicationController
+class Api::V1::UsersController < ApplicationController
   def index
     @users = User.all
   end
@@ -15,6 +15,17 @@ class UsersController < ApplicationController
     else
       :bad_request
     end
+  end
+
+  def show
+    @user = User.find_by(id: params[:id])
+    render json: {
+      id: @user.id,
+      email: @user.email,
+      created_at: @user.created_at,
+      updated_at: @user.updated_at,
+      type: @user.type
+    }
   end
 
   private
