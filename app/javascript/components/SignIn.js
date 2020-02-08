@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import jwtDecode from 'jwt-decode';
 import { Link } from 'react-router-dom';
 import { login } from './auth';
 
@@ -6,6 +7,20 @@ const SignIn = ({ history }) => {
   const [state, setState] = useState({
     email: '',
     password: '',
+  });
+
+  useEffect(() => {
+    const jwt = localStorage.getItem('jwt');
+    if (jwt) {
+      const type = jwtDecode(jwt).type;
+      if (type === 'Admin') {
+        history.push('/admin-dashboard');
+      } else if (type === 'Agent') {
+        history.push('/agent-dashboard');
+      } else if (type === 'Client') {
+        history.push('/dashboard');
+      }
+    }
   });
 
   const [loginError, setLoginError] = useState('');

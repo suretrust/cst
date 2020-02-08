@@ -55,7 +55,9 @@ const AdminDashboard = ({ history }) => {
               </div>
             ))
         ) : (
-          <p>There is no open ticket.</p>
+          <p className="shadow-sm p-3 mb-4 bg-light">
+            There is no open ticket.
+          </p>
         )}
       </div>
     </Layout>

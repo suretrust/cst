@@ -37,7 +37,9 @@ const Dashboard = ({ history }) => {
               </div>
             ))
         ) : (
-          <p>You have no open tickets.</p>
+          <p className="shadow-sm p-3 mb-4 bg-light">
+            You have no open tickets.
+          </p>
         )}
       </div>
 
@@ -56,7 +58,9 @@ const Dashboard = ({ history }) => {
               </div>
             ))
         ) : (
-          <p>You have no closed tickets.</p>
+          <p className="shadow-sm p-3 mb-4 bg-light">
+            You have no closed tickets.
+          </p>
         )}
       </div>
     </Layout>
