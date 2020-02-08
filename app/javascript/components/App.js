@@ -5,6 +5,7 @@ import {
   Switch,
   Redirect,
 } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from './Home';
 import SignUp from './SignUp';
 import SignIn from './SignIn';

@@ -72,6 +72,36 @@ const getUser = async id => {
   return user;
 };
 
+const getAgents = async (id, setAgents) => {
+  await Axios.get('/api/v1/agents', { params: { user_id: id } })
+    .then(res => {
+      setAgents(res.data);
+    })
+    .catch(err => {
+      return err;
+    });
+};
+
+const getAdmins = async (id, setAdmins) => {
+  await Axios.get('/api/v1/admins', { params: { user_id: id } })
+    .then(res => {
+      setAdmins(res.data);
+    })
+    .catch(err => {
+      return err;
+    });
+};
+
+const getClients = async (id, setClients) => {
+  await Axios.get('/api/v1/clients', { params: { user_id: id } })
+    .then(res => {
+      setClients(res.data);
+    })
+    .catch(err => {
+      return err;
+    });
+};
+
 const getUserEmail = async (id, setUserEmailName) => {
   const user = await Axios.get(`/api/v1/users/${id}`)
     .then(res => {
@@ -98,6 +128,9 @@ export {
   getTicket,
   getComments,
   getUser,
+  getAgents,
+  getAdmins,
+  getClients,
   getUserEmail,
   addComment,
   addTicket,

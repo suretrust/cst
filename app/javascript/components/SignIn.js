@@ -25,6 +25,7 @@ const SignIn = ({ history }) => {
   return (
     <form onSubmit={handleSubmit}>
       <p>{loginError}</p>
+      <h2>Sign In</h2>
       <div>
         <label htmlFor="email">Email</label>
         <input
@@ -33,6 +34,7 @@ const SignIn = ({ history }) => {
           value={state.email}
           onChange={handleChange}
           placeholder="Email"
+          className="form-control mb-4"
           required
         />
       </div>
@@ -45,10 +47,13 @@ const SignIn = ({ history }) => {
           onChange={handleChange}
           placeholder="Password"
           minLength="6"
+          className="form-control mb-4"
           required
         />
       </div>
-      <button type="submit">Sign In</button>
+      <button type="submit" className="btn btn-info mb-5">
+        Sign In
+      </button>
       <p>
         Don't have an account? <Link to="/sign-up">Sign Up</Link>
       </p>

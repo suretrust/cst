@@ -28,7 +28,7 @@ const CommentForm = ({ ticketId, setComments, comments }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="comment-form">
       <div>
         <label htmlFor="message">Message</label>
         <textarea
@@ -37,11 +37,14 @@ const CommentForm = ({ ticketId, setComments, comments }) => {
           value={formData.message}
           onChange={handleChange}
           placeholder="Message"
+          className="form-control mb-4"
           minLength="6"
           required
         />
       </div>
-      <button type="submit">Add Comment</button>
+      <button type="submit" className="btn btn-info mb-5">
+        Add Comment
+      </button>
     </form>
   );
 };

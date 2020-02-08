@@ -39,6 +39,7 @@ const SignUp = ({ history }) => {
   return (
     <form onSubmit={handleSubmit}>
       <p>{signUpError}</p>
+      <h2>Sign Up</h2>
       <div>
         <label htmlFor="email">Email</label>
         <input
@@ -47,6 +48,7 @@ const SignUp = ({ history }) => {
           id="email"
           value={state.email}
           onChange={handleChange}
+          className="form-control mb-4"
           placeholder="Email"
           required
         />
@@ -60,6 +62,7 @@ const SignUp = ({ history }) => {
           value={state.password}
           onChange={handleChange}
           placeholder="Password"
+          className="form-control mb-4"
           minLength="6"
           required
         />
@@ -73,11 +76,14 @@ const SignUp = ({ history }) => {
           value={confirmPassword}
           onChange={handleConfirmPassword}
           placeholder="Password confirmation"
+          className="form-control mb-4"
           required
         />
         <small>{pwdError}</small>
       </div>
-      <button type="submit">Sign Up</button>
+      <button type="submit" className="btn btn-info mb-5">
+        Sign Up
+      </button>
       <p>
         Already have an account? <Link to="/sign-in">Sign In</Link>
       </p>

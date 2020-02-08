@@ -22,19 +22,23 @@ const ClosedTickets = ({ history }) => {
 
   return (
     <Layout>
-      <h2>Closed Tickets</h2>
-      {tickets.filter(ticket => !ticket.status).length > 0 ? (
-        tickets
-          .filter(ticket => !ticket.status)
-          .map(tick => (
-            <div key={tick.id}>
-              <Link to={`/ticket/${tick.id}`}>{tick.title}</Link>
-              <p>{tick.message}</p>
-            </div>
-          ))
-      ) : (
-        <p>There is no closed ticket.</p>
-      )}
+      <div className="tickets p-2">
+        <h2 className="mb-4">Closed Tickets</h2>
+        {tickets.filter(ticket => !ticket.status).length > 0 ? (
+          tickets
+            .filter(ticket => !ticket.status)
+            .map(tick => (
+              <div className="shadow-sm p-3 mb-4 bg-light" key={tick.id}>
+                <Link to={`/ticket/${tick.id}`}>
+                  <h4 className="text-info">{tick.title}</h4>
+                </Link>
+                <p>{tick.message}</p>
+              </div>
+            ))
+        ) : (
+          <p>There is no closed ticket.</p>
+        )}
+      </div>
     </Layout>
   );
 };

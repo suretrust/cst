@@ -27,27 +27,33 @@ const AgentDashboard = ({ history }) => {
 
   return (
     <Layout>
-      <h2>Open tickets</h2>
-      {tickets.filter(ticket => ticket.status).length > 0 ? (
-        tickets
-          .reverse()
-          .filter(ticket => ticket.status)
-          .map(tick => (
-            <div key={tick.id}>
-              <Link to={`/ticket/${tick.id}`}>{tick.title}</Link>
-              <button
-                type="submit"
-                id={`@@${tick.id}`}
-                onClick={handleCloseTicket}
-              >
-                Close Ticket
-              </button>
-              <p>{tick.message}</p>
-            </div>
-          ))
-      ) : (
-        <p>There is no open ticket.</p>
-      )}
+      <div className="tickets p-2">
+        <h2 className="mb-4">Open tickets</h2>
+        {tickets.filter(ticket => ticket.status).length > 0 ? (
+          tickets
+            .reverse()
+            .filter(ticket => ticket.status)
+            .map(tick => (
+              <div className="shadow-sm p-3 mb-4 bg-light" key={tick.id}>
+                <Link to={`/ticket/${tick.id}`}>
+                  <h4 className="text-info">{tick.title}</h4>
+                </Link>
+                <p>{tick.message}</p>
+                <hr />
+                <button
+                  type="submit"
+                  className="btn btn-sm btn-info"
+                  id={`@@${tick.id}`}
+                  onClick={handleCloseTicket}
+                >
+                  Close Ticket
+                </button>
+              </div>
+            ))
+        ) : (
+          <p>There is no open ticket.</p>
+        )}
+      </div>
     </Layout>
   );
 };

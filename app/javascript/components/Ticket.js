@@ -23,44 +23,61 @@ const Ticket = ({ history, match }) => {
 
   return (
     <Layout>
-      <h2>
-        {ticket ? ticket.title : ''} (
-        {ticket && ticket.status ? 'OPEN' : 'CLOSED'})
-      </h2>
-      <p>{ticket ? ticket.message : ''}</p>
-      <p>Opened: {ticket ? Date(ticket.created_at).split('GMT')[0] : ''}</p>
-      <p>
-        {ticket && !ticket.status
-          ? `Closed: ${Date(ticket.updated_at).split('GMT')[0]}`
-          : ''}
-      </p>
+      <div className="p-2 tickets">
+        <div className="shadow-sm p-3 mb-4 bg-light">
+          <h2 className="text-info">
+            {ticket ? ticket.title : ''} (
+            {ticket && ticket.status ? 'OPEN' : 'CLOSED'})
+          </h2>
+          <p>{ticket ? ticket.message : ''}</p>
+          <hr />
+          <small>
+            Opened:{' '}
+            <span className="font-italic">
+              {ticket ? Date(ticket.created_at).split('GMT')[0] : ''}
+            </span>
+          </small>
+          <p>
+            {ticket && !ticket.status ? (
+              <small>
+                Closed:{' '}
+                <span className="font-italic">
+                  {Date(ticket.updated_at).split('GMT')[0]}
+                </span>
+              </small>
+            ) : (
+              ''
+            )}
+          </p>
+        </div>
 
-      {(ticket && userType === 'Agent' && ticket.status) ||
-      (ticket && userType === 'Admin' && ticket.status) ||
-      (comments &&
-        comments.filter(
-          comment => comment.ticket_id === Number(match.params.id)
-        ).length > 0 &&
-        ticket &&
-        ticket.status) ? (
-        <CommentForm
-          comments={comments}
-          setComments={setComments}
-          ticketId={match.params.id}
-        />
-      ) : (
-        ''
-      )}
+        {comments ? (
+          <TicketComments
+            comments={comments.filter(
+              comment => comment.ticket_id === Number(match.params.id)
+            )}
+          />
+        ) : (
+          ''
+        )}
 
-      {comments ? (
-        <TicketComments
-          comments={comments.filter(
+        {(ticket && userType === 'Agent' && ticket.status) ||
+        (ticket && userType === 'Admin' && ticket.status) ||
+        (comments &&
+          comments.filter(
             comment => comment.ticket_id === Number(match.params.id)
-          )}
-        />
-      ) : (
-        ''
-      )}
+          ).length > 0 &&
+          ticket &&
+          ticket.status) ? (
+          <CommentForm
+            comments={comments}
+            setComments={setComments}
+            ticketId={match.params.id}
+          />
+        ) : (
+          ''
+        )}
+      </div>
     </Layout>
   );
 };

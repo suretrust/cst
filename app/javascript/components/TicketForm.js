@@ -31,6 +31,7 @@ const TicketForm = ({ history }) => {
   return (
     <Layout>
       <form onSubmit={handleSubmit}>
+        <h2 className="mb-4">Create a new ticket</h2>
         <div>
           <label htmlFor="title">Title</label>
           <input
@@ -39,6 +40,7 @@ const TicketForm = ({ history }) => {
             value={formData.title}
             onChange={handleChange}
             placeholder="Title"
+            className="form-control mb-4"
             minLength="6"
             required
           />
@@ -51,11 +53,14 @@ const TicketForm = ({ history }) => {
             value={formData.message}
             onChange={handleChange}
             placeholder="Message"
+            className="form-control mb-4"
             minLength="6"
             required
           />
         </div>
-        <button type="submit">Create Ticket</button>
+        <button type="submit" className="btn btn-info mb-5">
+          Create Ticket
+        </button>
       </form>
     </Layout>
   );
