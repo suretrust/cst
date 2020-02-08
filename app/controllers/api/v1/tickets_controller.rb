@@ -1,7 +1,14 @@
 # frozen_string_literal: true
 
 class Api::V1::TicketsController < ApplicationController
-  def create; end
+  def create
+    @ticket = Ticket.new(ticket_params)
+    if @ticket.save
+      render json: @ticket
+    else
+      render json: @ticket.errors
+    end
+  end
 
   def index
     @tickets = Ticket.all
@@ -24,6 +31,6 @@ class Api::V1::TicketsController < ApplicationController
   private
 
   def ticket_params
-    params.permit(:title, :message, :status)
+    params.permit(:title, :message, :status, :user_id, :user_email)
   end
 end

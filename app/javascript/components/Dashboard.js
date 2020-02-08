@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import jwtDecode from 'jwt-decode';
 import { getTickets } from '../utilities/api';
 import { Link } from 'react-router-dom';
+import Layout from './Layout';
 
 const Dashboard = ({ history }) => {
   const [tickets, setTickets] = useState([]);
@@ -20,31 +21,41 @@ const Dashboard = ({ history }) => {
   }, []);
 
   return (
-    <div>
+    <Layout>
       <div>
         <h2>Open Tickets</h2>
-        {tickets
-          .filter(ticket => ticket.user_id === userId && ticket.status)
-          .map(tick => (
-            <div key={tick.id}>
-              <Link to={`/ticket/${tick.id}`}>{tick.title}</Link>
-              <p>{tick.message}</p>
-            </div>
-          ))}
+        {tickets.filter(ticket => ticket.user_id === userId && ticket.status)
+          .length > 0 ? (
+          tickets
+            .filter(ticket => ticket.user_id === userId && ticket.status)
+            .map(tick => (
+              <div key={tick.id}>
+                <Link to={`/ticket/${tick.id}`}>{tick.title}</Link>
+                <p>{tick.message}</p>
+              </div>
+            ))
+        ) : (
+          <p>You have no open tickets.</p>
+        )}
       </div>
 
       <div>
         <h2>Closed Tickets</h2>
-        {tickets
-          .filter(ticket => ticket.user_id === userId && !ticket.status)
-          .map(tick => (
-            <div key={tick.id}>
-              <Link to={`/ticket/${tick.id}`}>{tick.title}</Link>
-              <p>{tick.message}</p>
-            </div>
-          ))}
+        {tickets.filter(ticket => ticket.user_id === userId && ticket.status)
+          .length > 0 ? (
+          tickets
+            .filter(ticket => ticket.user_id === userId && !ticket.status)
+            .map(tick => (
+              <div key={tick.id}>
+                <Link to={`/ticket/${tick.id}`}>{tick.title}</Link>
+                <p>{tick.message}</p>
+              </div>
+            ))
+        ) : (
+          <p>You have no closed tickets.</p>
+        )}
       </div>
-    </div>
+    </Layout>
   );
 };
 

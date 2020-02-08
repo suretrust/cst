@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { getTicket, getComments } from '../utilities/api';
 import TicketComments from './TicketComments';
 import CommentForm from './CommentForm';
+import Layout from './Layout';
 
 const Ticket = ({ history, match }) => {
   const [ticket, setTicket] = useState(null);
@@ -18,7 +19,7 @@ const Ticket = ({ history, match }) => {
   }, []);
 
   return (
-    <div>
+    <Layout>
       <h2>
         {ticket ? ticket.title : ''} (
         {ticket && ticket.status ? 'OPEN' : 'CLOSED'})
@@ -52,7 +53,7 @@ const Ticket = ({ history, match }) => {
       ) : (
         ''
       )}
-    </div>
+    </Layout>
   );
 };
 

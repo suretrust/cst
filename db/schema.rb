@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_08_090948) do
+ActiveRecord::Schema.define(version: 2020_02_08_103925) do
 
   create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.text "message"
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 2020_02_08_090948) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "status", default: true
+    t.string "user_email"
     t.index ["user_id"], name: "index_tickets_on_user_id"
   end
 

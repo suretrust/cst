@@ -19,11 +19,24 @@ const addComment = async (setComments, comments, data) => {
     message: data.message,
   })
     .then(res => {
-      console.log(res.data);
       setComments([...comments, res.data]);
     })
     .catch(err => {
-      console.log(err);
+      return err;
+    });
+};
+
+const addTicket = async (setComments, comments, data) => {
+  await Axios.post('/api/v1/tickets', {
+    user_id: data.userId,
+    user_email: data.userEmail,
+    title: data.title,
+    message: data.message,
+  })
+    .then(res => {
+      setComments([...comments, res.data]);
+    })
+    .catch(err => {
       return err;
     });
 };
@@ -79,4 +92,5 @@ export {
   getUser,
   getUserEmail,
   addComment,
+  addTicket,
 };
