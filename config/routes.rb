@@ -1,8 +1,14 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  resources :users, only: :create
-  resources :tokens, only: :create
+  namespace :api do
+    namespace :v1 do
+      resources :tickets, only: %i[update create show index]
+      resources :comments, only: %i[create index]
+      resources :users, only: [:create, :show]
+      resources :tokens, only: :create
+    end
+  end
 
   namespace :v1, defaults: { format: 'json' } do
     get 'things', to: 'things#index'
