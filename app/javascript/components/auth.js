@@ -12,7 +12,7 @@ const redirectAuth = (history, userType) => {
 };
 
 const login = (state, setLoginError, history) => {
-  Axios.post('/tokens', state)
+  Axios.post('/api/v1/tokens', state)
     .then(res => {
       localStorage.setItem('jwt', res.data.jwt);
       const user = jwtDecode(res.data.jwt);
@@ -28,7 +28,7 @@ const login = (state, setLoginError, history) => {
 };
 
 const signUp = (state, setSignUpError, history) => {
-  Axios.post('/users', state)
+  Axios.post('/api/v1/users', state)
     .then(res => {
       localStorage.setItem('jwt', res.data.jwt);
       const user = jwtDecode(res.data.jwt);
