@@ -11,6 +11,7 @@ import SignIn from './SignIn';
 import Dashboard from './Dashboard';
 import AdminDashboard from './AdminDashboard';
 import AgentDashboard from './AgentDashboard';
+import Ticket from './Ticket';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/sign-up" component={SignUp} />
         <Route path="/sign-in" component={SignIn} />
         <Route path="/dashboard" component={Dashboard} />
+        <Route path="/ticket/:id" component={Ticket} />
         <Route path="/admin-dashboard" component={AdminDashboard} />
         <Route path="/agent-dashboard" component={AgentDashboard} />
         <Redirect to="/404" />
