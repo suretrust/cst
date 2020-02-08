@@ -60,6 +60,7 @@ const SignUp = ({ history }) => {
           value={state.password}
           onChange={handleChange}
           placeholder="Password"
+          minLength="6"
           required
         />
       </div>
