@@ -9,7 +9,7 @@
   </a>
 </p>
 
-> The system allows customers to be able to place support request and the support agents to
+> This is a customer support ticketing system that allows customers to be able to place support requests such that support agents/admins can respond to the requests.
 
 ## Install
 
@@ -69,6 +69,10 @@ Username: client@client.com
 Password: '123456'
 ```
 
+5. Run `rails s` to run the application.
+
+6. Navigate to `http://localhost:3000` in your browser to view home page.
+
 ## Run tests
 
 ```sh
@@ -88,6 +92,28 @@ An agent can see open tickets and process any of them, the tickets are arranged 
 ### Admins
 
 An admin can see open tickets and process any of them, the tickets are arranged in reversed order, meaning last created ticket appears last on the list. Admin can download recently closed/processed (30 days) tickets as PDF. Admins can also close the tickets once it has been successfuly resolved. Admin can also view clients, agents, and admins. Admin can promote or demote a user to a client, agent, or admin. Admin can not demote any other admin.
+
+## Technologies Used
+
+- React
+- Ruby on Rails
+- Yarn
+- MySQL
+- Rspec
+- Bootstrap
+
+## Things to note
+
+- This is a REST API rails backend.
+- React is used in the frontend using react-rails gem.
+- React handles all routes except API calls and PDF file download.
+- Prawn PDF generator is used to generate the PDF.
+
+## To-do List
+
+- Add more test coverage.
+- Refactor code.
+- Name all URLs and import them from `constants.js`.
 
 ## Author
 
