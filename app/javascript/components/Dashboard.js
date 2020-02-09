@@ -18,7 +18,7 @@ const Dashboard = ({ history }) => {
       const id = jwtDecode(jwt).id;
       setUserId(id);
     }
-  }, [tickets]);
+  }, []);
 
   return (
     <Layout>

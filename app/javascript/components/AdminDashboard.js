@@ -7,6 +7,7 @@ import Layout from './Layout';
 const AdminDashboard = ({ history }) => {
   const [tickets, setTickets] = useState([]);
   const [userId, setUserId] = useState();
+  const [success, setSucess] = useState('');
 
   useEffect(() => {
     const jwt = localStorage.getItem('jwt');
@@ -18,15 +19,24 @@ const AdminDashboard = ({ history }) => {
       const id = jwtDecode(jwt).id;
       setUserId(id);
     }
-  }, [tickets]);
+  }, [handleCloseTicket]);
 
   const handleCloseTicket = e => {
     const id = e.target.id.split('@@')[1];
     closeTicket(id, userId);
+    setSucess('Ticket sucessfully closed!');
+    setTimeout(() => {
+      setSucess('');
+    }, 1500);
   };
 
   return (
     <Layout>
+      {success ? (
+        <p className="alert alert-success text-center">{success}</p>
+      ) : (
+        ''
+      )}
       <div className="p-2 tickets">
         <h2 className="mb-4">Open tickets</h2>
         {tickets.filter(ticket => ticket.status).length > 0 ? (
