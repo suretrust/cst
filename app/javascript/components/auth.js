@@ -20,7 +20,7 @@ const login = (state, setLoginError, history) => {
       redirectAuth(history, userType);
     })
     .catch(err => {
-      if (err) setLoginError('Wrong email or password');
+      if (err) setLoginError('Wrong email/password combination');
       setTimeout(() => {
         setLoginError('');
       }, 4000);
