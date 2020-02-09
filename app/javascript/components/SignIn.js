@@ -21,7 +21,7 @@ const SignIn = ({ history }) => {
         history.push('/dashboard');
       }
     }
-  });
+  }, []);
 
   const [loginError, setLoginError] = useState('');
 
@@ -39,7 +39,12 @@ const SignIn = ({ history }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <p>{loginError}</p>
+      {loginError ? (
+        <p className="alert alert-warning text-center">{loginError}</p>
+      ) : (
+        ''
+      )}
+
       <h2>Sign In</h2>
       <div>
         <label htmlFor="email">Email</label>

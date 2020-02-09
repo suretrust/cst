@@ -19,9 +19,12 @@ const Home = ({ history }) => {
 
   return (
     <main className="d-flex flex-column align-items-center main">
-      <h2>Welcome to CST</h2>
+      <h2 className="font-weight-bold text-info">Welcome to CST</h2>
       <div className="mt-5">
-        <Link to="/sign-up" className="btn btn-outline-info mr-2">
+        <Link
+          to="/sign-up"
+          className="btn bg-white white btn-outline-info mr-2"
+        >
           Sign Up
         </Link>
         <Link to="/sign-in" className="btn btn-info">

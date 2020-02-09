@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import * as moment from 'moment';
 import jwtDecode from 'jwt-decode';
 import { getTicket, getComments } from '../utilities/api';
 import TicketComments from './TicketComments';
@@ -31,19 +32,13 @@ const Ticket = ({ history, match }) => {
           </h2>
           <p>{ticket ? ticket.message : ''}</p>
           <hr />
-          <small>
-            Opened:{' '}
-            <span className="font-italic">
-              {ticket ? Date(ticket.created_at).split('GMT')[0] : ''}
-            </span>
+          <small className="font-italic">
+            Opened {ticket && ticket.created_at} ago
           </small>
           <p>
             {ticket && !ticket.status ? (
-              <small>
-                Closed:{' '}
-                <span className="font-italic">
-                  {Date(ticket.updated_at).split('GMT')[0]}
-                </span>
+              <small className="font-italic">
+                Closed {ticket && ticket.created_at} ago
               </small>
             ) : (
               ''

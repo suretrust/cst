@@ -18,7 +18,7 @@ const ClosedTickets = ({ history }) => {
         history.push('/not-found');
       }
     }
-  }, [tickets]);
+  }, []);
 
   return (
     <Layout>

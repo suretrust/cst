@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   namespace :v1 do
       resources :tickets, only: %i[update create show index]
       resources :comments, only: %i[create index]
-      resources :users, only: %i[create show]
+      resources :users, only: %i[create show update]
       resources :admins, only: [:index]
       resources :clients, only: [:index]
       resources :agents, only: [:index]

@@ -53,7 +53,11 @@ const SignUp = ({ history }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <p>{signUpError}</p>
+      {signUpError ? (
+        <p className="alert alert-warning text-center">{signUpError}</p>
+      ) : (
+        ''
+      )}
       <h2>Sign Up</h2>
       <div>
         <label htmlFor="email">Email</label>

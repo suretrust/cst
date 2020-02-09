@@ -20,7 +20,7 @@ const Navbar = ({ history }) => {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-info text-white mb-3 px-lg-5">
+    <nav className="navbar navbar-expand-lg navbar-light bg-info text-white px-lg-5">
       <a className="navbar-brand text-white" href="/">
         CST
       </a>
