@@ -22,8 +22,8 @@ const Dashboard = ({ history }) => {
 
   return (
     <Layout>
-      <div className="p-2 tickets">
-        <h2 className="mb-3">Open Tickets</h2>
+      <div className="p-2 my-3 tickets">
+        <h2 className="mb-3">Open Ticket(s)</h2>
         {tickets.filter(ticket => ticket.user_id === userId && ticket.status)
           .length > 0 ? (
           tickets
@@ -44,7 +44,7 @@ const Dashboard = ({ history }) => {
       </div>
 
       <div className="p-2 tickets">
-        <h2 className="mb-3">Closed Tickets</h2>
+        <h2 className="mb-3">Closed Ticket(s)</h2>
         {tickets.filter(ticket => ticket.user_id === userId && !ticket.status)
           .length > 0 ? (
           tickets

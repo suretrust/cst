@@ -12,7 +12,7 @@ class Api::V1::TicketsController < ApplicationController
   end
 
   def index
-    @tickets = Ticket.all
+    @tickets = Ticket.recently_closed
     render json: @tickets
   end
 

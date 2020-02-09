@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react';
 import jwtDecode from 'jwt-decode';
 import { logOut } from './auth';
 import { Link } from 'react-router-dom';
+import { getTicketsPdf } from '../utilities/api';
 
 const Navbar = ({ history }) => {
   const [userType, setUserType] = useState('');
+  const [userId, setUserId] = useState(null);
 
   useEffect(() => {
     const jwt = jwtDecode(localStorage.getItem('jwt'));
@@ -12,11 +14,16 @@ const Navbar = ({ history }) => {
       history.push('/sign-in');
     } else {
       setUserType(jwt.type);
+      setUserId(jwt.id);
     }
   }, []);
 
   const handleClick = () => {
     logOut();
+  };
+
+  const generatePdf = () => {
+    getTicketsPdf(userId);
   };
 
   return (
@@ -70,6 +77,9 @@ const Navbar = ({ history }) => {
             <li className="ml-0 ml-lg-3">
               <a href="/closed-tickets">Closed Tickets</a>
             </li>
+            <li className="ml-0 ml-lg-3">
+              <a href="/closed-tickets">Closed Tickets(PDF)</a>
+            </li>
             <li>
               <Link
                 to="/sign-in"
@@ -100,6 +110,11 @@ const Navbar = ({ history }) => {
             </li>
             <li className="ml-0 ml-lg-3">
               <a href="/closed-tickets">Closed Tickets</a>
+            </li>
+            <li className="ml-0 ml-lg-3">
+              <a href="#" onClick={generatePdf}>
+                Closed Tickets(PDF)
+              </a>
             </li>
             <li>
               <Link

@@ -22,8 +22,8 @@ const ClosedTickets = ({ history }) => {
 
   return (
     <Layout>
-      <div className="tickets p-2">
-        <h2 className="mb-4">Closed Tickets</h2>
+      <div className="tickets p-2 my-3">
+        <h2 className="mb-4">Closed Ticket(s)</h2>
         {tickets.filter(ticket => !ticket.status).length > 0 ? (
           tickets
             .filter(ticket => !ticket.status)

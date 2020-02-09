@@ -37,8 +37,8 @@ const AdminDashboard = ({ history }) => {
       ) : (
         ''
       )}
-      <div className="p-2 tickets">
-        <h2 className="mb-4">Open tickets</h2>
+      <div className="p-2 tickets my-3">
+        <h2 className="mb-4">Open ticket(s)</h2>
         {tickets.filter(ticket => ticket.status).length > 0 ? (
           tickets
             .reverse()

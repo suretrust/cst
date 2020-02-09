@@ -21,7 +21,7 @@ const Clients = ({ history }) => {
 
   return (
     <Layout>
-      <div className="tickets p-2">
+      <div className="tickets p-2 my-3">
         <h2 className="mb-4">Clients(s)</h2>
         {clients.map(client => (
           <div className="shadow-sm p-3 mb-4 bg-light" key={client.id}>

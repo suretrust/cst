@@ -104,7 +104,10 @@ const SignUp = ({ history }) => {
         Sign Up
       </button>
       <p>
-        Already have an account? <Link to="/sign-in">Sign In</Link>
+        Already have an account?{' '}
+        <Link to="/sign-in" className="link">
+          Sign In
+        </Link>
       </p>
     </form>
   );

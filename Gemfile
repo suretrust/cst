@@ -24,6 +24,8 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'jwt'
 gem 'rack-cors'
 gem 'react-rails'
+gem 'prawn'
+gem 'prawn-table'
 gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
 
 # Use Active Storage variant

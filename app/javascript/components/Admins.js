@@ -19,7 +19,7 @@ const Admins = ({ history }) => {
 
   return (
     <Layout>
-      <div className="tickets p-2">
+      <div className="tickets p-2 my-3">
         <h2 className="mb-4">Administrator(s)</h2>
         {admins.map(admin => (
           <div className="shadow-sm p-3 mb-4 bg-light" key={admin.id}>
