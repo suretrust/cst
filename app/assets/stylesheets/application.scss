@@ -19,8 +19,18 @@
 }
 
 .main {
-    height: 200px;
-    margin-top: calc((100vh - 200px)/2);
+    height: 100vh;
+    padding-top: calc((100vh - 200px)/2);
+    background-image: url(home.png);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    .white {
+        &:hover {
+            background-color: #17a2b8 !important;
+        }
+    }
 }
 
 form {
