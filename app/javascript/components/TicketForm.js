@@ -1,9 +1,20 @@
 import React, { useState } from 'react';
 import jwtDecode from 'jwt-decode';
+import { withRouter } from 'react-router';
+import { connect } from 'react-redux';
+import { setTickets } from '../actions';
 import Layout from './Layout';
 import { addTicket } from '../utilities/api';
 
-const TicketForm = ({ history }) => {
+const mapStateToProps = state => ({
+  tickets: state.tickets,
+});
+
+const mapDispatchToProps = dispatch => ({
+  setTickets: tickets => dispatch(setTickets(tickets)),
+});
+
+const TicketForm = ({ history, tickets, setTickets }) => {
   const jwt = localStorage.getItem('jwt');
   const userId = Number(jwtDecode(jwt).id);
   const userEmail = jwtDecode(jwt).email;
@@ -24,7 +35,7 @@ const TicketForm = ({ history }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    addTicket(formData);
+    addTicket(formData, setTickets, tickets);
     history.push('/dashboard');
   };
 
@@ -66,4 +77,7 @@ const TicketForm = ({ history }) => {
   );
 };
 
-export default TicketForm;
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(TicketForm));

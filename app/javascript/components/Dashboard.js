@@ -5,9 +5,19 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getTickets } from '../utilities/api';
 import Layout from './Layout';
+import { setTickets, setOpenTickets } from '../actions';
 
-const Dashboard = ({ history }) => {
-  const [tickets, setTickets] = useState([]);
+const mapStateToProps = state => ({
+  tickets: state.tickets,
+  openTickets: state.openTickets,
+});
+
+const mapDispatchToProps = dispatch => ({
+  setTickets: tickets => dispatch(setTickets(tickets)),
+  setOpenTickets: openTickets => dispatch(setOpenTickets(openTickets)),
+});
+
+const Dashboard = ({ history, tickets, setTickets, setOpenTickets }) => {
   const [userId, setUserId] = useState();
 
   useEffect(() => {
@@ -16,11 +26,11 @@ const Dashboard = ({ history }) => {
       history.push('/sign-in');
     } else {
       if (jwtDecode(jwt).type !== 'Client') history.push('/not-found');
-      getTickets(setTickets);
+      getTickets(setTickets, setOpenTickets);
       const id = jwtDecode(jwt).id;
       setUserId(id);
     }
-  }, []);
+  }, [setTickets]);
 
   return (
     <Layout>
@@ -69,4 +79,7 @@ const Dashboard = ({ history }) => {
   );
 };
 
-export default Dashboard;
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(Dashboard));

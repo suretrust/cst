@@ -1,11 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import jwtDecode from 'jwt-decode';
+import { withRouter } from 'react-router';
+import { connect } from 'react-redux';
 import { getTicket, getComments, closeTicket } from '../utilities/api';
 import TicketComments from './TicketComments';
+import { setTickets, setOpenTickets } from '../actions';
 import CommentForm from './CommentForm';
 import Layout from './Layout';
 
-const Ticket = ({ history, match }) => {
+const mapStateToProps = state => ({
+  tickets: state.tickets,
+  openTickets: state.openTickets,
+});
+
+const mapDispatchToProps = dispatch => ({
+  setTickets: tickets => dispatch(setTickets(tickets)),
+  setOpenTickets: openTickets => dispatch(setOpenTickets(openTickets)),
+});
+
+const Ticket = ({ history, match, setTickets, setOpenTickets }) => {
   const [ticket, setTicket] = useState(null);
   const [comments, setComments] = useState(null);
   const [userType, setUserType] = useState(null);
@@ -26,7 +39,7 @@ const Ticket = ({ history, match }) => {
 
   const handleCloseTicket = e => {
     const id = e.target.id;
-    closeTicket(id, userId);
+    closeTicket(id, userId, setOpenTickets, setTickets);
     setSucess('Ticket sucessfully closed!');
     setTimeout(() => {
       setSucess('');
@@ -52,7 +65,9 @@ const Ticket = ({ history, match }) => {
           <small className="font-italic">
             Opened {ticket && ticket.created_at} ago
           </small>
-          {ticket && ticket.status ? (
+          {ticket &&
+          (userType == 'Admin' || userType === 'Agent') &&
+          ticket.status ? (
             <button
               type="submit"
               className="d-block mt-3 btn btn-sm btn-info"
@@ -106,4 +121,4 @@ const Ticket = ({ history, match }) => {
   );
 };
 
-export default Ticket;
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Ticket));

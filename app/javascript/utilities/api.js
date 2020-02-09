@@ -1,9 +1,10 @@
 import Axios from 'axios';
 
-const getTickets = async setTickets => {
+const getTickets = async (setTickets, setOpenTickets) => {
   await Axios.get('/api/v1/tickets')
     .then(res => {
       setTickets(res.data);
+      setOpenTickets(res.data.filter(ticket => ticket.status).reverse());
     })
     .catch(err => {
       return err;
@@ -25,7 +26,7 @@ const addComment = async (setComments, comments, data) => {
     });
 };
 
-const addTicket = async data => {
+const addTicket = async (data, setTickets, tickets) => {
   await Axios.post('/api/v1/tickets', {
     user_id: data.userId,
     user_email: data.userEmail,
@@ -33,7 +34,7 @@ const addTicket = async data => {
     message: data.message,
   })
     .then(res => {
-      return res.data;
+      setTickets([...tickets, res.data]);
     })
     .catch(err => {
       return err;
@@ -50,9 +51,10 @@ const getTicket = async (setTicket, id) => {
     });
 };
 
-const closeTicket = async (id, userId) => {
+const closeTicket = async (id, userId, setOpenTickets, setTickets) => {
   await Axios.put(`/api/v1/tickets/${id}`, { user_id: userId })
     .then(res => {
+      getTickets(setTickets, setOpenTickets);
       return res.data;
     })
     .catch(err => {
@@ -60,9 +62,31 @@ const closeTicket = async (id, userId) => {
     });
 };
 
-const changeUserType = async (id, userId, parameter) => {
+const getAgents = async (id, setAgents) => {
+  await Axios.get('/api/v1/agents', { params: { user_id: id } })
+    .then(res => {
+      setAgents(res.data);
+    })
+    .catch(err => {
+      return err;
+    });
+};
+
+const getClients = async (id, setClients) => {
+  await Axios.get('/api/v1/clients', { params: { user_id: id } })
+    .then(res => {
+      setClients(res.data);
+    })
+    .catch(err => {
+      return err;
+    });
+};
+
+const changeUserType = async (id, userId, parameter, setAgents, setClients) => {
   await Axios.put(`/api/v1/users/${id}`, { user_id: userId, type: parameter })
     .then(res => {
+      setClients ? getClients(userId, setClients) : '';
+      setAgents ? getAgents(userId, setAgents) : '';
       return res.data;
     })
     .catch(err => {
@@ -81,30 +105,10 @@ const getUser = async id => {
   return user;
 };
 
-const getAgents = async (id, setAgents) => {
-  await Axios.get('/api/v1/agents', { params: { user_id: id } })
-    .then(res => {
-      setAgents(res.data);
-    })
-    .catch(err => {
-      return err;
-    });
-};
-
 const getAdmins = async (id, setAdmins) => {
   await Axios.get('/api/v1/admins', { params: { user_id: id } })
     .then(res => {
       setAdmins(res.data);
-    })
-    .catch(err => {
-      return err;
-    });
-};
-
-const getClients = async (id, setClients) => {
-  await Axios.get('/api/v1/clients', { params: { user_id: id } })
-    .then(res => {
-      setClients(res.data);
     })
     .catch(err => {
       return err;
