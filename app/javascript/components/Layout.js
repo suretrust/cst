@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes, { shape } from 'prop-types';
 import Footer from './Footer';
 import Navbar from './Navbar';
 
@@ -10,6 +11,10 @@ const Layout = ({ children }) => {
       <Footer />
     </React.Fragment>
   );
+};
+
+Layout.propTypes = {
+  children: PropTypes.arrayOf(shape).isRequired,
 };
 
 export default Layout;

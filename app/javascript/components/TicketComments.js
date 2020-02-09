@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes, { object } from 'prop-types';
 
 const TicketComments = ({ comments }) => {
   return (
@@ -20,6 +21,10 @@ const TicketComments = ({ comments }) => {
       )}
     </div>
   );
+};
+
+TicketComments.propTypes = {
+  comments: PropTypes.arrayOf(object).isRequired,
 };
 
 export default TicketComments;

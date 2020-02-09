@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import jwtDecode from 'jwt-decode';
 import { logOut } from './auth';
 import { Link } from 'react-router-dom';
-import { getTicketsPdf } from '../utilities/api';
 
 const Navbar = ({ history }) => {
   const [userType, setUserType] = useState('');

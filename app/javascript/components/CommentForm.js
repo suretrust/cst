@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes, { object } from 'prop-types';
 import jwtDecode from 'jwt-decode';
 import { addComment } from '../utilities/api';
 
@@ -47,6 +48,12 @@ const CommentForm = ({ ticketId, setComments, comments }) => {
       </button>
     </form>
   );
+};
+
+CommentForm.propTypes = {
+  ticketId: PropTypes.string.isRequired,
+  setComments: PropTypes.func.isRequired,
+  comments: PropTypes.arrayOf(object),
 };
 
 export default CommentForm;
