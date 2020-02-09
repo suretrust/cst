@@ -23,7 +23,7 @@ const Navbar = ({ history }) => {
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-info text-white px-lg-5">
-      <a className="navbar-brand text-white" href="/">
+      <a className="navbar-brand text-white font-weight-bold" href="/">
         CST
       </a>
       <button
