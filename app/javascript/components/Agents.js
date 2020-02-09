@@ -15,7 +15,7 @@ const Agents = ({ history }) => {
       const userId = Number(jwtDecode(jwt).id);
       getAgents(userId, setAgents);
     }
-  }, [agents]);
+  }, []);
 
   return (
     <Layout>

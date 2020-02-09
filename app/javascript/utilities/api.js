@@ -1,4 +1,3 @@
-import jwtDecode from 'jwt-decode';
 import Axios from 'axios';
 
 const getTickets = async setTickets => {
@@ -14,11 +13,9 @@ const getTickets = async setTickets => {
 const getTicketsPdf = async userId => {
   await Axios.get('/api/v1/tickets.pdf', { params: { user_id: userId } })
     .then(res => {
-      console.log(res.data);
       setTickets(res.data);
     })
     .catch(err => {
-      console.log(err);
       return err;
     });
 };

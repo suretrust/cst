@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import jwtDecode from 'jwt-decode';
+import { withRouter } from 'react-router';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getTickets } from '../utilities/api';
 import Layout from './Layout';
@@ -18,7 +20,7 @@ const Dashboard = ({ history }) => {
       const id = jwtDecode(jwt).id;
       setUserId(id);
     }
-  }, [tickets]);
+  }, []);
 
   return (
     <Layout>
@@ -67,4 +69,4 @@ const Dashboard = ({ history }) => {
   );
 };
 
-export default Dashboard;
+export default connect(null, null)(withRouter(Dashboard));

@@ -33,6 +33,25 @@
     }
 }
 
+.not-found {
+    height: 100vh;
+    padding-top: 5rem;
+    background-image: url(not-found.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 50%;
+    margin: 0 auto;
+
+    a {
+        color: #17a2b8;
+
+        &:hover {
+            color: #17a2b8 !important;
+        }
+    }
+}
+
 form {
     max-width: 600px;
     padding: 1rem;
