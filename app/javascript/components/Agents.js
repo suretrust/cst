@@ -24,12 +24,12 @@ const Agents = ({ history }) => {
         {agents.map(agent => (
           <div className="shadow-sm p-3 mb-4 bg-light" key={agent.id}>
             <p>{agent.email}</p>
-            <small className="font-italic">
-              Became an agent on {Date(agent.updated_at).split('GMT')[0]}
-            </small>
             <hr />
             <button className="btn btn-sm btn-info" type="button">
               Promote to admin
+            </button>
+            <button className="btn btn-sm btn-warning ml-2" type="button">
+              Demote to client
             </button>
           </div>
         ))}

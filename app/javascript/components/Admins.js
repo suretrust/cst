@@ -24,10 +24,6 @@ const Admins = ({ history }) => {
         {admins.map(admin => (
           <div className="shadow-sm p-3 mb-4 bg-light" key={admin.id}>
             <p>{admin.email}</p>
-            <hr />
-            <small className="font-italic">
-              Became an admin on {Date(admin.updated_at).split('GMT')[0]}
-            </small>
           </div>
         ))}
       </div>
