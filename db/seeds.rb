@@ -49,8 +49,8 @@ User.all.each do |user|
 
   6.times do
     user.tickets.create!(
-      title: Faker::Quote.robin,
-      message: Faker::Quote.yoda,
+      title: Faker::Music.album,
+      message: Faker::Quote.matz,
       user_email: user.email
     )
   end
@@ -65,7 +65,7 @@ User.all.each do |user|
       user_id: id,
       user_email: User.find(id).email,
       ticket_id: user_ticket.id,
-      message: Faker::Quote.robin
+      message: Faker::Quote.matz
     )
   end
 end

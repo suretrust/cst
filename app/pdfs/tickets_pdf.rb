@@ -22,7 +22,7 @@ class TicketsPdf < Prawn::Document
   end
 
   def line_items_rows
-    [['S/N', 'Ticket title', "Client's Name", 'Ticket Message']] + ticket_details
+    [['S/N', 'Ticket title', "Client's Email", 'Ticket Message']] + ticket_details
   end
 
   def ticket_details

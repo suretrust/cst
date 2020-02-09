@@ -19,7 +19,7 @@ const AdminDashboard = ({ history }) => {
       const id = jwtDecode(jwt).id;
       setUserId(id);
     }
-  }, [handleCloseTicket]);
+  }, [tickets]);
 
   const handleCloseTicket = e => {
     const id = e.target.id.split('@@')[1];

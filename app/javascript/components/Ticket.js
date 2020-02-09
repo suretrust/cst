@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import * as moment from 'moment';
 import jwtDecode from 'jwt-decode';
 import { getTicket, getComments } from '../utilities/api';
 import TicketComments from './TicketComments';
@@ -10,6 +9,7 @@ const Ticket = ({ history, match }) => {
   const [ticket, setTicket] = useState(null);
   const [comments, setComments] = useState(null);
   const [userType, setUserType] = useState(null);
+  const [success, setSucess] = useState('');
 
   useEffect(() => {
     const jwt = localStorage.getItem('jwt');
@@ -22,8 +22,22 @@ const Ticket = ({ history, match }) => {
     }
   }, []);
 
+  const handleCloseTicket = e => {
+    const id = e.target.id.split('@@')[1];
+    closeTicket(id, userId);
+    setSucess('Ticket sucessfully closed!');
+    setTimeout(() => {
+      setSucess('');
+    }, 1500);
+  };
+
   return (
     <Layout>
+      {success ? (
+        <p className="alert alert-success text-center">{success}</p>
+      ) : (
+        ''
+      )}
       <div className="p-2 tickets">
         <div className="shadow-sm p-3 mb-4 bg-light">
           <h2 className="text-info">
@@ -35,10 +49,22 @@ const Ticket = ({ history, match }) => {
           <small className="font-italic">
             Opened {ticket && ticket.created_at} ago
           </small>
+          {ticket && ticket.status ? (
+            <button
+              type="submit"
+              className="d-block mt-3 btn btn-sm btn-info"
+              id={`@@${ticket.id}`}
+              onClick={handleCloseTicket}
+            >
+              Close Ticket
+            </button>
+          ) : (
+            ''
+          )}
           <p>
             {ticket && !ticket.status ? (
               <small className="font-italic">
-                Closed {ticket && ticket.created_at} ago
+                Closed {ticket && ticket.updated_at} ago
               </small>
             ) : (
               ''
