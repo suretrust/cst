@@ -17,6 +17,8 @@ const Clients = ({ history }) => {
     }
   }, [clients]);
 
+  const handlePromotion = () => {};
+
   return (
     <Layout>
       <div className="tickets p-2">
@@ -24,11 +26,12 @@ const Clients = ({ history }) => {
         {clients.map(client => (
           <div className="shadow-sm p-3 mb-4 bg-light" key={client.id}>
             <p>{client.email}</p>
-            <small className="font-italic">
-              Became a client on {Date(client.updated_at).split('GMT')[0]}
-            </small>
             <hr />
-            <button type="button" className="btn btn-sm btn-info">
+            <button
+              type="button"
+              onClick={handlePromotion}
+              className="btn btn-sm btn-info"
+            >
               Promote to agent
             </button>
           </div>
