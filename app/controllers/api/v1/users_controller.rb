@@ -32,8 +32,11 @@ class Api::V1::UsersController < ApplicationController
     return unless user.admin?
 
     @user = User.find(params[:id])
-    update_user_attributes(params)
-    render json: { message: "User updated!"}
+    if update_user_attributes(params)
+      render json: { message: "User updated!"}
+    else
+      render json: @user.errors
+    end
   end
 
   private
@@ -41,11 +44,15 @@ class Api::V1::UsersController < ApplicationController
   def update_user_attributes(params)
     if params[:type] == 'Admin'
       @user.update_attributes(type: 'Admin')
+      return true
     elsif params[:type] == 'Client'
       @user.update_attributes(type: 'Client')
+      return true
     elsif params[:type] == 'Agent'
       @user.update_attributes(type: 'Agent')
+      return true
     end
+    false
   end
 
   def user_params
