@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+include ActionView::Helpers::DateHelper
 class Api::V1::TicketsController < ApplicationController
   def create
     @ticket = Ticket.new(ticket_params)
@@ -21,8 +22,8 @@ class Api::V1::TicketsController < ApplicationController
       title: @ticket.title,
       message: @ticket.message,
       status: @ticket.status,
-      created_at: (@ticket.created_at.to_f * 1000),
-      updated_at: (@ticket.updated_at.to_f * 1000)
+      created_at: time_ago_in_words(@ticket.created_at),
+      updated_at: time_ago_in_words(@ticket.updated_at)
     }
   end
 

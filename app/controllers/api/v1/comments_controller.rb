@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+include ActionView::Helpers::DateHelper
+
 class Api::V1::CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
