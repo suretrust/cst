@@ -26,6 +26,6 @@ class TicketsPdf < Prawn::Document
   end
 
   def ticket_details
-    @test = @tickets.each_with_index.map { |ticket, index| [index + 1, ticket.title, ticket.user.name, ticket.message] }
+    @test = @tickets.each_with_index.map { |ticket, index| [index + 1, ticket.title, ticket.user.email, ticket.message] }
   end
 end

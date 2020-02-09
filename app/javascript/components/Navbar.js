@@ -22,10 +22,6 @@ const Navbar = ({ history }) => {
     logOut();
   };
 
-  const generatePdf = () => {
-    getTicketsPdf(userId);
-  };
-
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-info text-white px-lg-5">
       <a className="navbar-brand text-white" href="/">
@@ -78,7 +74,7 @@ const Navbar = ({ history }) => {
               <a href="/closed-tickets">Closed Tickets</a>
             </li>
             <li className="ml-0 ml-lg-3">
-              <a href="/closed-tickets">Closed Tickets(PDF)</a>
+              <a href="/api/v1/tickets.pdf">Processed Tickets Report (PDF)</a>
             </li>
             <li>
               <Link
@@ -112,9 +108,7 @@ const Navbar = ({ history }) => {
               <a href="/closed-tickets">Closed Tickets</a>
             </li>
             <li className="ml-0 ml-lg-3">
-              <a href="#" onClick={generatePdf}>
-                Closed Tickets(PDF)
-              </a>
+              <a href="/api/v1/tickets.pdf">Processed Tickets Report (PDF)</a>
             </li>
             <li>
               <Link
