@@ -28,10 +28,32 @@ class Api::V1::UsersController < ApplicationController
     }
   end
 
+  def update
+    return unless user.admin?
+
+    @user = User.find(params[:id])
+    update_user_attributes(params)
+    render json: { message: "User updated!"}
+  end
+
   private
 
+  def update_user_attributes(params)
+    if params[:type] == 'Admin'
+      @user.update_attributes(type: 'Admin')
+    elsif params[:type] == 'Client'
+      @user.update_attributes(type: 'Client')
+    elsif params[:type] == 'Agent'
+      @user.update_attributes(type: 'Agent')
+    end
+  end
+
   def user_params
-    params.permit(:email, :password)
+    params.permit(:email, :password, :type)
+  end
+
+  def user
+    User.find(params[:user_id])
   end
 
   def encode_token(payload = {})
