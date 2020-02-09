@@ -12,6 +12,7 @@
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "bootstrap": "^4.4.1",
     "dfa": "1.1.0",
+    "history-prop-types": "^2.5.2",
     "javascript-time-ago": "^2.0.6",
     "jwt-decode": "^2.2.0",
     "moment": "^2.24.0",

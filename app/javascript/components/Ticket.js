@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import jwtDecode from 'jwt-decode';
-import { getTicket, getComments } from '../utilities/api';
+import { getTicket, getComments, closeTicket } from '../utilities/api';
 import TicketComments from './TicketComments';
 import CommentForm from './CommentForm';
 import Layout from './Layout';
@@ -9,6 +9,7 @@ const Ticket = ({ history, match }) => {
   const [ticket, setTicket] = useState(null);
   const [comments, setComments] = useState(null);
   const [userType, setUserType] = useState(null);
+  const [userId, setUserId] = useState(null);
   const [success, setSucess] = useState('');
 
   useEffect(() => {
@@ -17,18 +18,20 @@ const Ticket = ({ history, match }) => {
       history.push('/sign-in');
     } else {
       setUserType(jwtDecode(jwt).type);
+      setUserId(jwtDecode(jwt).id);
       getTicket(setTicket, match.params.id);
       getComments(setComments);
     }
   }, []);
 
   const handleCloseTicket = e => {
-    const id = e.target.id.split('@@')[1];
+    const id = e.target.id;
     closeTicket(id, userId);
     setSucess('Ticket sucessfully closed!');
     setTimeout(() => {
       setSucess('');
     }, 1500);
+    history.push('/');
   };
 
   return (
@@ -53,7 +56,7 @@ const Ticket = ({ history, match }) => {
             <button
               type="submit"
               className="d-block mt-3 btn btn-sm btn-info"
-              id={`@@${ticket.id}`}
+              id={match.params.id}
               onClick={handleCloseTicket}
             >
               Close Ticket

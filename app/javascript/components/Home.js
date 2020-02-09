@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { history as historyPropTypes } from 'history-prop-types';
 import jwtDecode from 'jwt-decode';
 import { Link } from 'react-router-dom';
 

@@ -69,4 +69,4 @@ const Dashboard = ({ history }) => {
   );
 };
 
-export default connect(null, null)(withRouter(Dashboard));
+export default Dashboard;

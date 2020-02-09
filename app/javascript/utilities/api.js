@@ -10,16 +10,6 @@ const getTickets = async setTickets => {
     });
 };
 
-const getTicketsPdf = async userId => {
-  await Axios.get('/api/v1/tickets.pdf', { params: { user_id: userId } })
-    .then(res => {
-      setTickets(res.data);
-    })
-    .catch(err => {
-      return err;
-    });
-};
-
 const addComment = async (setComments, comments, data) => {
   await Axios.post('/api/v1/comments', {
     user_id: data.userId,
@@ -62,6 +52,16 @@ const getTicket = async (setTicket, id) => {
 
 const closeTicket = async (id, userId) => {
   await Axios.put(`/api/v1/tickets/${id}`, { user_id: userId })
+    .then(res => {
+      return res.data;
+    })
+    .catch(err => {
+      return err;
+    });
+};
+
+const changeUserType = async (id, userId, parameter) => {
+  await Axios.put(`/api/v1/users/${id}`, { user_id: userId, type: parameter })
     .then(res => {
       return res.data;
     })
@@ -134,7 +134,6 @@ const getComments = async setComments => {
 
 export {
   getTickets,
-  getTicketsPdf,
   getTicket,
   getComments,
   getUser,
@@ -145,4 +144,5 @@ export {
   addComment,
   addTicket,
   closeTicket,
+  changeUserType,
 };
