@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import jwtDecode from 'jwt-decode';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
+import PropTypes, { object } from 'prop-types';
 import { Link } from 'react-router-dom';
 import { getTickets, closeTicket } from '../utilities/api';
 import { setTickets, setOpenTickets } from '../actions';
@@ -83,6 +84,13 @@ const AgentDashboard = ({
       </div>
     </Layout>
   );
+};
+
+AgentDashboard.propTypes = {
+  comments: PropTypes.arrayOf(object),
+  openTickets: PropTypes.arrayOf(object).isRequired,
+  setTickets: PropTypes.func.isRequired,
+  setOpenTickets: PropTypes.func.isRequired,
 };
 
 export default connect(

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import jwtDecode from 'jwt-decode';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { getTicket, getComments, closeTicket } from '../utilities/api';
 import TicketComments from './TicketComments';
 import { setTickets, setOpenTickets } from '../actions';
@@ -119,6 +120,11 @@ const Ticket = ({ history, match, setTickets, setOpenTickets }) => {
       </div>
     </Layout>
   );
+};
+
+Ticket.propTypes = {
+  setTickets: PropTypes.func.isRequired,
+  setOpenTickets: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Ticket));

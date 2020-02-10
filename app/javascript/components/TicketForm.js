@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import jwtDecode from 'jwt-decode';
 import { withRouter } from 'react-router';
+import PropTypes, { object } from 'prop-types';
 import { connect } from 'react-redux';
 import { setTickets } from '../actions';
 import Layout from './Layout';
@@ -75,6 +76,11 @@ const TicketForm = ({ history, tickets, setTickets }) => {
       </form>
     </Layout>
   );
+};
+
+TicketForm.propTypes = {
+  tickets: PropTypes.arrayOf(object),
+  setTickets: PropTypes.func.isRequired,
 };
 
 export default connect(

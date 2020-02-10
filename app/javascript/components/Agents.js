@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
+import PropTypes, { object } from 'prop-types';
 import jwtDecode from 'jwt-decode';
 import Layout from './Layout';
 import { getAgents, changeUserType } from '../utilities/api';
@@ -90,6 +91,11 @@ const Agents = ({ history, agents, setAgents }) => {
       </div>
     </Layout>
   );
+};
+
+Agents.propTypes = {
+  agents: PropTypes.arrayOf(object),
+  setAgents: PropTypes.arrayOf(object).isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Agents));

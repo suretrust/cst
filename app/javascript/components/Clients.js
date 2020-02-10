@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
+import PropTypes, { object } from 'prop-types';
 import jwtDecode from 'jwt-decode';
 import Layout from './Layout';
 import { getClients, changeUserType } from '../utilities/api';
@@ -72,6 +73,11 @@ const Clients = ({ history, clients, setClients }) => {
       </div>
     </Layout>
   );
+};
+
+Clients.propTypes = {
+  clients: PropTypes.arrayOf(object),
+  setClients: PropTypes.arrayOf(object).isRequired,
 };
 
 export default connect(

@@ -3,6 +3,7 @@ import jwtDecode from 'jwt-decode';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import PropTypes, { object } from 'prop-types';
 import { getTickets } from '../utilities/api';
 import Layout from './Layout';
 import { setTickets, setOpenTickets } from '../actions';
@@ -77,6 +78,12 @@ const Dashboard = ({ history, tickets, setTickets, setOpenTickets }) => {
       </div>
     </Layout>
   );
+};
+
+Dashboard.propTypes = {
+  tickets: PropTypes.arrayOf(object),
+  setTickets: PropTypes.func.isRequired,
+  setOpenTickets: PropTypes.func.isRequired,
 };
 
 export default connect(
