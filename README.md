@@ -97,10 +97,12 @@ An admin can see open tickets and process any of them, the tickets are arranged 
 
 - React
 - Ruby on Rails
+- Redux
 - Yarn
 - MySQL
 - Rspec
 - Bootstrap
+- SCSS
 
 ## Things to note
 
@@ -113,7 +115,7 @@ An admin can see open tickets and process any of them, the tickets are arranged 
 
 - Add more test coverage.
 - Refactor code.
-- Name all URLs and import them from `constants.js`.
+- Name all URLs and import them from `constants.js` instead of directly inputing them in Axios calls.
 
 ## Author
 
