@@ -1,0 +1,112 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+* {
+    outline: none !important;
+}
+
+.main {
+    height: 100vh;
+    padding-top: calc((100vh - 200px)/2);
+    background-image: url(home.png);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    .white {
+        &:hover {
+            background-color: #17a2b8 !important;
+        }
+    }
+}
+
+.not-found {
+    height: 100vh;
+    padding-top: 5rem;
+    background-image: url(not-found.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 50%;
+    margin: 0 auto;
+
+    a {
+        color: #17a2b8;
+
+        &:hover {
+            color: #17a2b8 !important;
+        }
+    }
+}
+
+form {
+    max-width: 600px;
+    padding: 1rem;
+    margin: 0 auto;
+    height: 500px;
+    margin-top: calc((100vh - 500px)/2);
+
+}
+
+.children {
+    min-height: 85vh;
+}
+
+nav {
+    white {
+        color: white !important;
+        background-color: white !important;
+    }
+
+    li {
+
+        a,
+        button {
+            border: none;
+            background-color: transparent;
+            padding: 0;
+            color: white;
+            border-bottom: .1rem solid white;
+
+            &:hover {
+                opacity: .9;
+                color: inherit;
+                text-decoration: none;
+            }
+        }
+    }
+}
+
+.tickets {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+footer {
+    p {
+        a {
+            &:hover {
+                color: white !important;
+            }
+        }
+    }
+}
+
+.comment-form {
+    margin: 0;
+    padding: 0;
+    height: auto;
+}
