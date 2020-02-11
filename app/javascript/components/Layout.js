@@ -13,8 +13,8 @@ const Layout = ({ children }) => {
   );
 };
 
-Layout.propTypes = {
-  children: PropTypes.shape(shape).isRequired,
-};
+// Layout.propTypes = {
+//   children: PropTypes.shape(shape).isRequired,
+// };
 
 export default Layout;
