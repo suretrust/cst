@@ -9,7 +9,25 @@
   </a>
 </p>
 
-> This is a customer support ticketing system that allows customers to be able to place support requests such that support agents/admins can respond to the requests.
+> This is a customer support ticketing system that allows customers to place support requests and support agents/admins to respond and process the requests.
+
+## [Live Demo](https://csticket.herokuapp.com/)
+
+## Homepage
+
+![CST](cst1.png)
+
+## Client Dashboard
+
+![CST](cst2.png)
+
+## Agent Dashboard
+
+![CST](cst4.png)
+
+## Admin Dashboard
+
+![CST](cst3.png)
 
 ## Install
 
@@ -121,7 +139,7 @@ An admin can see open tickets and process any of them, the tickets are arranged 
 
 👤 **Saheed Oladele**
 
-- Website: saheedoladele.com
+- Website: [saheedoladele](https://saheedoladele.com)
 - Twitter: [@suretrustng](https://twitter.com/suretrustng)
 - Github: [@suretrust](https://github.com/suretrust)
 - LinkedIn: [@saheed-oladele](https://linkedin.com/in/saheed-oladele)
