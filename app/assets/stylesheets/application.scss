@@ -21,7 +21,7 @@
 .main {
     height: 100vh;
     padding-top: calc((100vh - 200px)/2);
-    background-image: url(home.png);
+    background-image: image_url('home.png');
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -36,7 +36,7 @@
 .not-found {
     height: 100vh;
     padding-top: 5rem;
-    background-image: url(not-found.svg);
+    background-image: image_url('not-found.svg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;

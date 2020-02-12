@@ -77,7 +77,7 @@ const Clients = ({ history, clients, setClients }) => {
 
 Clients.propTypes = {
   clients: PropTypes.arrayOf(object),
-  setClients: PropTypes.arrayOf(object).isRequired,
+  setClients: PropTypes.func.isRequired,
 };
 
 export default connect(

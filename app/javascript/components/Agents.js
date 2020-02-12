@@ -95,7 +95,7 @@ const Agents = ({ history, agents, setAgents }) => {
 
 Agents.propTypes = {
   agents: PropTypes.arrayOf(object),
-  setAgents: PropTypes.arrayOf(object).isRequired,
+  setAgents: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Agents));

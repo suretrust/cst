@@ -33,7 +33,7 @@ class Api::V1::UsersController < ApplicationController
 
     @user = User.find(params[:id])
     if update_user_attributes(params)
-      render json: { message: "User updated!"}
+      render json: { message: 'User updated!' }
     else
       render json: @user.errors
     end
@@ -61,11 +61,5 @@ class Api::V1::UsersController < ApplicationController
 
   def user
     User.find(params[:user_id])
-  end
-
-  def encode_token(payload = {})
-    exp = 24.hours.from_now
-    payload[:exp] = exp.to_i
-    JWT.encode(payload, Rails.application.secrets.secret_key_base)
   end
 end
